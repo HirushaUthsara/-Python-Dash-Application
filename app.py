@@ -106,86 +106,92 @@ plt.show()
 app = dash.Dash(__name__)
 server = app.server
 
+# Create the Dash app
+app = dash.Dash(__name__)
+server = app.server
+
 # Define the layout of the dashboard
 app.layout = html.Div(
     style={'font-family': 'Arial, sans-serif', 'max-width': '800px',
-           'margin': '0 auto', 'padding': '20px'},
+           'margin': '0 auto', 'padding': '20px', 'background-color': '#F0F0F0'},
     children=[
         html.H1('CO544-2023 Lab 3: Wine Quality Prediction',
-                style={'text-align': 'center'}),
+                style={'text-align': 'center', 'color': '#333333'}),
         # Layout for exploratory data analysis: correlation between two selected features
         html.Div([
-            html.H3('Exploratory Data Analysis'),
-            html.Label('Feature 1 (X-axis)'),
+            html.H3('Exploratory Data Analysis', style={'color': '#555555'}),
+            html.Label('Feature 1 (X-axis)', style={'color': '#777777'}),
             dcc.Dropdown(
                 id='x_feature',
                 options=[{'label': col, 'value': col} for col in data.columns],
                 value=data.columns[0],
-                style={'width': '100%'}
+                style={'width': '100%', 'background-color': '#FFFFFF'}
             )
         ], style={'width': '30%', 'display': 'inline-block', 'margin-right': '20px'}),
         html.Div([
-            html.Label('Feature 2 (Y-axis)'),
+            html.Label('Feature 2 (Y-axis)', style={'color': '#777777'}),
             dcc.Dropdown(
                 id='y_feature',
                 options=[{'label': col, 'value': col} for col in data.columns],
                 value=data.columns[1],
-                style={'width': '100%'}
+                style={'width': '100%', 'background-color': '#FFFFFF'}
             )
         ], style={'width': '30%', 'display': 'inline-block'}),
         dcc.Graph(id='correlation_plot', style={
                   'height': '400px', 'margin-top': '20px'}),
         # Layout for wine quality prediction based on input feature values
-        html.H3("Wine Quality Prediction", style={'margin-top': '40px'}),
+        html.H3("Wine Quality Prediction", style={
+                'margin-top': '40px', 'color': '#555555'}),
         html.Div([
-            html.Label("Fixed Acidity"),
+            html.Label("Fixed Acidity", style={'color': '#777777'}),
             dcc.Input(id='fixed_acidity', type='number',
-                      required=True, style={'width': '100%'}),
-            html.Label("Volatile Acidity"),
+                      required=True, style={'width': '100%', 'background-color': '#FFFFFF'}),
+            html.Label("Volatile Acidity", style={'color': '#777777'}),
             dcc.Input(id='volatile_acidity', type='number',
-                      required=True, style={'width': '100%'}),
-            html.Label("Citric Acid"),
+                      required=True, style={'width': '100%', 'background-color': '#FFFFFF'}),
+            html.Label("Citric Acid", style={'color': '#777777'}),
             dcc.Input(id='citric_acid', type='number',
-                      required=True, style={'width': '100%'}),
+                      required=True, style={'width': '100%', 'background-color': '#FFFFFF'}),
             html.Br(),
-            html.Label("Residual Sugar"),
+            html.Label("Residual Sugar", style={'color': '#777777'}),
             dcc.Input(id='residual_sugar', type='number',
-                      required=True, style={'width': '100%'}),
-            html.Label("Chlorides"),
+                      required=True, style={'width': '100%', 'background-color': '#FFFFFF'}),
+            html.Label("Chlorides", style={'color': '#777777'}),
             dcc.Input(id='chlorides', type='number',
-                      required=True, style={'width': '100%'}),
-            html.Label("Free Sulfur Dioxide"),
+                      required=True, style={'width': '100%', 'background-color': '#FFFFFF'}),
+            html.Label("Free Sulfur Dioxide", style={'color': '#777777'}),
             dcc.Input(id='free_sulfur_dioxide', type='number',
-                      required=True, style={'width': '100%'}),
+                      required=True, style={'width': '100%', 'background-color': '#FFFFFF'}),
             html.Br(),
-            html.Label("Total Sulfur Dioxide"),
+
+            html.Label("Total Sulfur Dioxide", style={'color': '#777777'}),
             dcc.Input(id='total_sulfur_dioxide', type='number',
-                      required=True, style={'width': '100%'}),
-            html.Label("Density"),
+                      required=True, style={'width': '100%', 'background-color': '#FFFFFF'}),
+            html.Label("Density", style={'color': '#777777'}),
             dcc.Input(id='density', type='number',
-                      required=True, style={'width': '100%'}),
-            html.Label("pH"),
+                      required=True, style={'width': '100%', 'background-color': '#FFFFFF'}),
+            html.Label("pH", style={'color': '#777777'}),
             dcc.Input(id='ph', type='number', required=True,
-                      style={'width': '100%'}),
+                      style={'width': '100%', 'background-color': '#FFFFFF'}),
             html.Br(),
-            html.Label("Sulphates"),
+            html.Label("Sulphates", style={'color': '#777777'}),
             dcc.Input(id='sulphates', type='number',
-                      required=True, style={'width': '100%'}),
-            html.Label("Alcohol"),
+                      required=True, style={'width': '100%', 'background-color': '#FFFFFF'}),
+            html.Label("Alcohol", style={'color': '#777777'}),
             dcc.Input(id='alcohol', type='number',
-                      required=True, style={'width': '100%'}),
+                      required=True, style={'width': '100%', 'background-color': '#FFFFFF'}),
             html.Br(),
         ]),
         html.Div([
             html.Button('Predict', id='predict-button',
-                        n_clicks=0, style={'margin-top': '20px'})
+                        n_clicks=0, style={'margin-top': '20px', 'background-color': '#333333', 'color': '#FFFFFF'}),
         ]),
         html.Div([
-            html.H4("Predicted Quality", style={'margin-top': '40px'}),
+            html.H4("Predicted Quality", style={
+                    'margin-top': '40px', 'color': '#555555'}),
             html.Div(id='prediction-output',
                      style={'font-weight': 'bold', 'font-size': '18px'})
         ])
-
     ]
 )
 
